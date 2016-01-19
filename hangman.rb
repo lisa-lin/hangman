@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Game
 	attr_accessor :secret_word, :board, :guess, :missed, :max_misses, :wrong_letters
 	
@@ -23,15 +25,30 @@ class Game
 	
 	def start
 		puts "Welcome to HANGMAN!"
+		puts "Load saved game? (y/n)"
+		ans = gets.chomp.downcase
+		ans == "y" ? load : play
+	end
+	
+	def play
 		puts "I've chosen my word. Guess one letter per turn. You only get 7 incorrect guesses."
+		puts "Type 'SAVE' during play to save game and 'EXIT' to leave."
 		puts @secret_word.join
 		
 		until @missed == @max_misses
 			puts "Choose a letter"
 			puts @board
 			@guess = gets.chomp.downcase
-			check_guess
-			win if @board == @secret_word.join
+			
+			if @guess == "save"
+				save_game
+			elsif @guess == "exit"
+				puts "Goodbye"
+				exit
+			else
+				check_guess
+				win if @board == @secret_word.join
+			end
 		end
 		
 		lose if @missed == @max_misses
@@ -61,6 +78,21 @@ class Game
 	def win
 		puts "Congrats, you guessed the secret word \"#{secret_word.join}\"!!" 
 		exit
+	end
+	
+	def save_game 
+  		File.open("save.yaml", "w") { |file| file.write YAML::dump(self) }
+  		puts "Game saved!"
+  		exit
+ 	end
+	
+	def load
+		if File.exists?("save.yaml")
+    		saved_game = YAML::load(File.read("save.yaml"))
+    		saved_game.play
+  		else
+    		puts "No saved games yet"
+  		end   
 	end
 	
 end

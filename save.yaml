@@ -1,0 +1,19 @@
+--- !ruby/object:Game
+secret_word:
+- p
+- e
+- t
+- e
+- r
+- b
+- o
+- r
+- o
+- u
+- g
+- h
+board: pe_e__o_o__h
+guess: save
+missed: 0
+max_misses: 7
+wrong_letters: []

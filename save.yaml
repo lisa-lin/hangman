@@ -12,8 +12,11 @@ secret_word:
 - u
 - g
 - h
-board: pe_e__o_o__h
+board: pe_e__o_ou_h
 guess: save
-missed: 0
+missed: 3
 max_misses: 7
-wrong_letters: []
+wrong_letters:
+- y
+- w
+- i

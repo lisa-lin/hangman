@@ -33,7 +33,7 @@ class Game
 	def play
 		puts "I've chosen my word. Guess one letter per turn. You only get 7 incorrect guesses."
 		puts "Type 'SAVE' during play to save game and 'EXIT' to leave."
-		puts @secret_word.join
+		#puts @secret_word.join
 		
 		until @missed == @max_misses
 			puts "Choose a letter"

@@ -88,7 +88,7 @@ class Game
 	
 	def load
 		if File.exists?("save.yaml")
-    		saved_game = YAML::load(File.read("save.yaml"))
+			saved_game = YAML::load(File.read("save.yaml"))
     		saved_game.play
   		else
     		puts "No saved games yet"
